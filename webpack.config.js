@@ -12,6 +12,33 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',   //使用vue-loader把vue文件变成浏览器可执行的js代码
+            },
+            {
+                test: /\.css$/,
+                use: [   //把css文件写到js里面
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.styl/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'stylus-loader'
+                ]
+            },
+            {
+                test:/\.(gif|jpg|png|jpeg|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 1024 * 500,   //图片的大小小于500kb时就把图片转换成base64写到js代码里面去
+                            name: '[name]-aaa.[ext]'  //定义输出的图片的名字
+                        }
+                    }
+                ]
             }
         ]
     },
